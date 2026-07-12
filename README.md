@@ -43,4 +43,39 @@ select month, description, sum_amt
 from cte2
 where rnk =1 
 
---------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+Question link
+https://platform.stratascratch.com/coding/10127-calculate-samanthas-and-lisas-total-sales-revenue?code_type=3
+
+Solution
+select sum(sales_revenue) as total_sales_revenue
+from sales_performance
+where salesperson in ('Samantha', 'Lisa')
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Question link
+https://platform.stratascratch.com/coding/10130-find-the-number-of-inspections-for-each-risk-category-by-inspection-type?code_type=3
+
+Solution
+WITH cte AS (
+    SELECT
+        inspection_type,
+        risk_category,
+        COUNT(*) AS total_no_risk
+    FROM sf_restaurant_health_violations
+    GROUP BY inspection_type, risk_category
+    ORDER BY inspection_type
+)
+
+SELECT
+    inspection_type,
+    SUM(CASE WHEN risk_category = 'High Risk' THEN total_no_risk ELSE 0 END) AS high_risk,
+    SUM(CASE WHEN risk_category = 'Low Risk' THEN total_no_risk ELSE 0 END) AS low_risk,
+    SUM(CASE WHEN risk_category = 'Moderate Risk' THEN total_no_risk ELSE 0 END) AS moderate_risk,
+    SUM(CASE WHEN risk_category IS NULL THEN total_no_risk ELSE 0 END) AS no_risk,
+    SUM(total_no_risk) AS total_risk
+FROM cte
+GROUP BY inspection_type
+----------------------------------------------------------------------------------------------------------------------------------------
+Question link
+
