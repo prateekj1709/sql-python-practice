@@ -76,6 +76,24 @@ SELECT
     SUM(total_no_risk) AS total_risk
 FROM cte
 GROUP BY inspection_type
-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+Question link
+https://platform.stratascratch.com/coding/10090-find-the-percentage-of-shipable-orders/official-solution?code_type=3
+
+Solution
+select 100*sum(case when c.address is not null then 1 else 0 end) / count(*) as percent_shipable
+from orders o
+join customers c on c.id = o.cust_id
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Question link
+https://platform.stratascratch.com/coding/10085-facebook-matching-users-pairs?code_type=3
+
+Solution
+select f1.id, f2.id
+from facebook_employees f1
+join facebook_employees f2 on f1.location = f2.location and f1.age != f2.age and f1.gender = f2.gender and f1.is_senior != f2.is_senior
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 Question link
 
