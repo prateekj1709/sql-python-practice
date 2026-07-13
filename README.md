@@ -96,4 +96,29 @@ join facebook_employees f2 on f1.location = f2.location and f1.age != f2.age and
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 Question link
+https://platform.stratascratch.com/coding/10078-find-matching-hosts-and-guests-in-a-way-that-they-are-both-of-the-same-gender-and-nationality?code_type=3
+
+Solution
+select distinct h.host_id, g.guest_id
+from airbnb_hosts h
+join airbnb_guests g on h.gender = g.gender and h.nationality= g.nationality
+order by h.host_id
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Question link 
+https://platform.stratascratch.com/coding/10077-income-by-title-and-gender?code_type=3
+
+Solution
+with cte as (select worker_ref_id, sum(bonus) as total_bonus
+from sf_bonus
+group by worker_ref_id)
+
+select e.employee_title, e.sex, avg(salary+total_bonus) as avg_comp
+from cte c 
+join sf_employee e on e.id = c.worker_ref_id
+group by e.employee_title, e.sex
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Question link
+https://platform.stratascratch.com/coding/10049-reviews-of-categories?code_type=3
 
