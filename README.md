@@ -122,3 +122,60 @@ group by e.employee_title, e.sex
 Question link
 https://platform.stratascratch.com/coding/10049-reviews-of-categories?code_type=3
 
+Soln)
+with recursive cte as (select business_id, review_count, 
+case when position(';' in categories) > 0
+then left(categories, position(';' in categories)-1)
+else categories
+end as category,
+case when position(';' in categories) > 0
+then substring(categories from position(';' in categories)+1)
+else null
+end as remaining
+from yelp_business
+
+union all 
+
+Select business_id, review_count, 
+case when position(';' in remaining) > 0
+then left(remaining, position(';' in remaining)-1)
+else remaining
+end as category,
+case when position(';' in remaining) > 0
+then substring(remaining from position(';' in remaining)+1)
+else null
+end as remaining
+from cte
+where remaining is not null
+)
+
+select category, sum(review_count) as counts
+from cte 
+group by category
+order by counts desc
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Question link 
+https://platform.stratascratch.com/coding/10025-find-all-possible-varieties-which-occur-in-either-of-the-winemag-datasets/official-solution?code_type=3
+
+Soln)
+with cte as (select variety
+from winemag_p1
+group by variety
+
+union 
+
+select variety
+from winemag_p2
+group by variety)
+
+select *
+from cte
+order by variety asc
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Question link
+
+
+
+
