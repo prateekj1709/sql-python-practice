@@ -245,6 +245,10 @@ where salary in (select salary from worker where worker_id != e.worker_id)
 order by salary desc
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
+https://platform.stratascratch.com/coding/9842-find-all-workers-whose-first-name-contains-6-letters-and-also-ends-with-the-letter-h?code_type=3
+
+select * from worker
+where length(first_name) = 6 and first_name like '%h'
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
 ----------------------------------------------------------------------------------------------------------------------------------------
