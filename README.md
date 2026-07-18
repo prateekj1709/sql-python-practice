@@ -237,6 +237,12 @@ join managers m on e.manager_id = m.id
 where e.salary > m.salary
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
+https://platform.stratascratch.com/coding/9856-find-employees-with-the-same-salary?code_type=3
+
+select worker_id, first_name, salary
+from worker e
+where salary in (select salary from worker where worker_id != e.worker_id)
+order by salary desc
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
 ----------------------------------------------------------------------------------------------------------------------------------------
