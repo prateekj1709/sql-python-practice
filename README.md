@@ -210,11 +210,31 @@ WHERE yearly_salary <= 30000 OR yearly_salary >= 70000
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
+https://platform.stratascratch.com/coding/9905-highest-target-under-manager?code_type=3
+
+select first_name, target
+from salesforce_employees
+where manager_id = 13 and target = (select max(target) from salesforce_employees where manager_id = 13)
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
+https://platform.stratascratch.com/coding/9897-highest-salary-in-department/official-solution?code_type=3
+
+select department, first_name, salary
+from employee e
+where salary = (select max(salary)
+from employee
+where department = e.department)
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
+https://platform.stratascratch.com/coding/9894-employee-and-manager-salaries/official-solution?code_type=3
+
+with managers as (select id, salary from employee)
+
+select e.first_name, e.salary
+from employee e
+join managers m on e.manager_id = m.id
+where e.salary > m.salary
 ----------------------------------------------------------------------------------------------------------------------------------------
 Question link
 ----------------------------------------------------------------------------------------------------------------------------------------
